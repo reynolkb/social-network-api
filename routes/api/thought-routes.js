@@ -16,12 +16,13 @@ router.route('/').get(getAllThoughts);
 // /api/thoughts/<userId>
 router.route('/:userId').post(addThought);
 
-// /api/thoughts/<userId>/<thoughtId>
+// /api/thoughts/<thoughtId>
 router
     .route('/:thoughtId')
     .get(getThoughtById)
     .put(updateThought)
 
+// /api/thoughts/<userId>/<thoughtId>
 router
     .route('/:userId/:thoughtId')
     .delete(removeThought);

@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const ReactionSchema = new Schema(
+const reactionSchema = new Schema(
     {
         // set custom id to avoid confusion with parent comment _id
         reactionId: {
@@ -30,7 +30,7 @@ const ReactionSchema = new Schema(
     }
 );
 
-const ThoughtSchema = new Schema(
+const thoughtSchema = new Schema(
     {
         thoughtText: {
             type: String,
@@ -46,7 +46,7 @@ const ThoughtSchema = new Schema(
             type: String,
             required: true
         },
-        reactions: [ReactionSchema]
+        reactions: [reactionSchema]
     },
     {
         toJSON: {
@@ -58,12 +58,13 @@ const ThoughtSchema = new Schema(
 );
 
 // create the User model using the UserSchema
-const Thought = model('Thought', ThoughtSchema);
+const Thought = model('Thought', thoughtSchema);
+const Reaction = model('Reaction', reactionSchema);
 
 // get total count of friends
-ThoughtSchema.virtual('reactionCount').get(function () {
+thoughtSchema.virtual('reactionCount').get(function () {
     return this.reactions.length;
 });
 
 // export the User model
-module.exports = Thought;
+module.exports = { Thought, Reaction };

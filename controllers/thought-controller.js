@@ -88,17 +88,20 @@ const thoughtController = {
     // add reaction
     addReaction({ params, body }, res) {
         // Reaction.create(body)
+        console.log(params.thoughtId);
+
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
             { $addToSet: { replies: body } },
             { new: true, runValidators: true }
         )
-            .then(dbUserData => {
-                if (!dbUserData) {
+            .then(dbThoughtData => {
+                console.log(dbThoughtData);
+                if (!dbThoughtData) {
                     res.status(404).json({ message: 'No user found with this id!' });
                     return;
                 }
-                res.json(dbUserData);
+                res.json(dbThoughtData);
             })
             .catch(err => res.json(err));
     },

@@ -31,4 +31,4 @@ const Reaction = new Schema(
     }
 );
 
-module.exports = { Reaction };
+module.exports = Reaction;

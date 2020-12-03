@@ -63,12 +63,17 @@ const userController = {
                 }
 
                 // remove a user's associated thoughts when deleted.
-                var thoughts = dbUserData.thoughts;
-                await thoughts.forEach(thought => {
-                    Thought.findOneAndDelete({ _id: thought });
-                });
+                // var thoughts = dbUserData.thoughts;
+                // await thoughts.forEach(thought => {
+                //     Thought.findOneAndDelete({ _id: thought });
+                // });
 
-                res.json(dbUserData);
+                // return Thought.deleteMany({ _id: { $in: thoughts } })
+
+                // res.json(dbUserData);
+            })
+            .then(() => {
+                res.json({ message: 'user has been deleted.' });
             })
             .catch(err => res.status(400).json(err));
     },

@@ -87,20 +87,19 @@ const thoughtController = {
     },
 
     // add reaction
-    addReaction({ params, body }, res) {
+    addReaction(req, res) {
         // Reaction.create(body)
-        console.log(params.thoughtId);
+        console.log(req.params.thoughtId);
 
         Thought.findOneAndUpdate(
-            { _id: params.thoughtId },
-            { $addToSet: { reactions: body } },
+            { _id: req.params.thoughtId },
+            { $addToSet: { reactions: req.body } },
             { new: true, runValidators: true }
         )
             .then(dbThoughtData => {
                 console.log(dbThoughtData);
                 if (!dbThoughtData) {
-                    res.status(404).json({ message: 'No user found with this id!' });
-                    return;
+                    return res.status(404).json({ message: 'No user found with this id!' });
                 }
                 res.json(dbThoughtData);
             })

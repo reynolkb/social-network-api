@@ -37,6 +37,5 @@ thoughtSchema.virtual('reactionCount').get(function () {
 // create the User model using the UserSchema
 const Thought = model('Thought', thoughtSchema);
 
-
 // export the User model
 module.exports = {Thought} ;

@@ -25,7 +25,8 @@ Once you've downloaded the code open the zipped folder in an IDE.
 
 Then run 'npm install' and you will need to create your own .env file to hook it up to your MongoDB. Once that is done you can run 'npm start' to start the application.
 
-Video Walkthrough: [https://youtu.be/8XB-fpCw1Po](https://youtu.be/8XB-fpCw1Po)
+Video Walkthrough Part 1: [https://youtu.be/p3Jd5DOIY94](https://youtu.be/p3Jd5DOIY94)
+Video Walkthrough Part 2: [https://youtu.be/p3Jd5DOIY94](https://youtu.be/p3Jd5DOIY94)
 
 ![screenshot of application](./screenshot.png)
 

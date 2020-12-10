@@ -14,10 +14,8 @@ const userController = {
     // get one user by id
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
-            .populate({
-                path: 'thoughts',
-                select: '-__v'
-            })
+            .populate('thoughts')
+            .populate('friends')
             .select('-__v')
             .then(dbUserData => {
                 if (!dbUserData) {
@@ -58,9 +56,10 @@ const userController = {
         User.findOneAndDelete({ _id: params.id })
             .then(dbUserData => {
                 if (!dbUserData) {
-                    res.status(404).json({ message: 'No user found with this id!' });
-                    return;
+                    return res.status(404).json({ message: 'No user found with this id!' });
                 }
+
+                // bonus: return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } })
             })
             .then(() => {
                 res.json({ message: 'user has been deleted.' });

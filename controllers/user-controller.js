@@ -56,7 +56,7 @@ const userController = {
     // delete user
     deleteUser({ params }, res) {
         User.findOneAndDelete({ _id: params.id })
-            .then(async dbUserData => {
+            .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({ message: 'No user found with this id!' });
                     return;
